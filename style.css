@@ -19,11 +19,18 @@ html {
   background-color: var(--main-bg);
 }
 
-main {
-  height: 90vh;
+body {
+  height: 100vh;
 }
 
-main,
+p {
+  font-size: 1rem;
+  color: var(--primary);
+}
+
+/* ========================================== */
+
+body,
 .nft__container {
   display: flex;
   flex-direction: column;
@@ -32,22 +39,10 @@ main,
 }
 
 .nft__container {
+  max-width: 300px;
   background-color: var(--card-bg);
-  width: 300px;
-  height: auto;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
-}
-
-.nft__container,
-.img__container,
-.img__container > img {
-  border-radius: 10px;
-}
-
-p {
-  font-size: 14px;
-  color: var(--primary);
 }
 
 .nft__container--box {
@@ -55,37 +50,76 @@ p {
   margin: 15px auto;
 }
 
+.nft__container,
+.img__container,
+.img__container > img,
+.img__container::after {
+  border-radius: 10px;
+}
+
 .nft__title > a,
 .nft__author > p > a,
 .attribution {
   color: var(--secondary);
+  text-decoration: none;
 }
 
-.nft__author > p > a,
-.nft__title > a {
-  text-decoration: none;
+.nft__author > p > a:hover,
+.nft__title > a:hover,
+.nft__value {
+  color: var(--hover);
 }
 
 .img__container > img {
   width: 100%;
+  display: block;
+}
+
+.img__container {
+  position: relative;
+}
+
+.img__container > svg {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  z-index: 1;
+  opacity: 0;
+}
+
+.img__container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--hover);
+  opacity: 0;
+}
+
+.img__container:hover::after {
+  opacity: 0.5;
+}
+
+.img__container:hover > svg {
+  opacity: 1;
+}
+
+.img__container:hover > svg,
+.img__container:hover::after,
+.nft__author > p > a:hover,
+.nft__title > a:hover {
+  transition: 0.5s ease-out;
+  cursor: pointer;
+}
+
+.nft__title {
+  font-size: 1.2rem;
 }
 
 .nft__desc {
   line-height: 1.4em;
-}
-
-.space--bottom {
-  margin-bottom: 20px;
-}
-
-.flex__wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nft__value {
-  color: var(--hover);
 }
 
 .nft__container--box > hr {
@@ -108,4 +142,26 @@ p {
 .nft__author > img {
   border: 1px solid var(--secondary);
   border-radius: 100%;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+  margin-top: 75px;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+/* ========================================== */
+
+.space--bottom {
+  margin-bottom: 20px;
+}
+
+.flex__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
